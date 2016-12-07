@@ -1,0 +1,6 @@
+<%= bootstrap_form_for(usuario) do |f| %>
+  <%= f.text_field :login %>
+  <%= f.password_field :senha %>
+  <%= f.password_field :password_confirmation, label: "Confirm Password", value: params.permit(:password_confirmation)[:password_confirmation] %>
+  <%= f.submit %>
+<% end %>

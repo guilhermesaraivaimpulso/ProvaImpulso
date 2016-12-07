@@ -1,0 +1,64 @@
+<h1>SHOW material</h1>
+<h2>
+  <%= @material.nome %>
+  <div style="font-size: 15px;font-weight: normal;">
+    (
+    <%= link_to 'Editar' , edit_material_path %>
+    <%= link_to 'Deletar', @material, method: :delete, data: { confirm: 'Realmente deseja deletar?' } %>
+    )
+  </div>
+</h2>
+<p>Estoque: <%= @material.qnt %>
+</p>
+
+<div class="alert alert-danger" id="DIV_alert_Red_AddTipoUsu" role="alert" style="display:none">
+  <div id="Alert_Red_AddTipoUsu"></div>
+</div>
+<% if params[:error]=='001' %>
+  <script type="text/javascript">
+      $('#DIV_alert_Red_AddTipoUsu').show();
+      $('#Alert_Red_AddTipoUsu').html("<strong>Atenção! </strong>Valor so estoque não pode ser negativo.<br> Máximo valor para retirada: <%= @material.qnt %>");
+      setTimeout(function(){ $('#DIV_alert_Red_AddTipoUsu').hide(); }, 10000);
+  </script>
+<% end %>
+<% if params[:error]=='002' %>
+  <script type="text/javascript">
+      $('#DIV_alert_Red_AddTipoUsu').show();
+      $('#Alert_Red_AddTipoUsu').html("<strong>Atenção! </strong>Material não pode ser apagado.<br> Há registros de log em seu nome");
+      setTimeout(function(){ $('#DIV_alert_Red_AddTipoUsu').hide(); }, 10000);
+  </script>
+<% end %>
+<% if params[:error]=='003' %>
+  <script type="text/javascript">
+      $('#DIV_alert_Red_AddTipoUsu').show();
+      $('#Alert_Red_AddTipoUsu').html("<strong>Atenção! </strong>Estoque não pode ser alterado.<br> Acesso garantido apenas de segunda a sexta de 9h as 18h.");
+      setTimeout(function(){ $('#DIV_alert_Red_AddTipoUsu').hide(); }, 10000);
+  </script>
+<% end %>
+<button class="btn btn-default" data-toggle="collapse" data-target="#demo">Controle do Estoque</button>
+<div id="demo" class="collapse">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <b>Entrada</b>
+      <%= bootstrap_form_for(@material, layout: :inline, url: entrar_path, :method => :POST )do |f| %>
+            <%= f.number_field :qnt, hide_label: true, value: 0  %>
+            <%= f.hidden_field :MatId, hide_label: true, value: @material.id  %>
+            <%= f.submit "Entrar", class: "btn btn-default" %>
+      <% end %>
+
+      <b>Retirada</b>
+      <%= bootstrap_form_for(@material, layout: :inline, url: retirar_path, :method => :POST ) do |f| %>
+            <%= f.number_field :qnt, hide_label: true, value: 0 %>
+            <%= f.hidden_field :MatId, hide_label: true, value: @material.id  %>
+            <%= f.submit "Retirar", class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+
+<%= link_to '/home/index' do %>
+  <input type="button" class="btn btn-default" value="Voltar">
+<% end %>

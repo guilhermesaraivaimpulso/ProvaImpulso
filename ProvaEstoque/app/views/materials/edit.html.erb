@@ -1,0 +1,5 @@
+<h1>Editar <%= @material.nome %></h1>
+<%= render 'formedit', material: @material %>
+<%= link_to '/home/index' do %>
+  <input type="button" class="btn btn-default" value="Voltar">
+<% end %>

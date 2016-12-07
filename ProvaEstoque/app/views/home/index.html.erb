@@ -1,0 +1,28 @@
+<h1>Material</h1>
+<% if @materiais.length!=0 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Estoque</th>
+      <th>Log</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materiais.each do |material| %>
+      <tr>
+        <td><%= material.id %></td>
+        <td><%= link_to material.nome , material_path(material) %></td>
+        <td><%= material.qnt %></td>
+        <td><%= link_to 'Log', matlogs_path(MatId: material.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<h6>Não há itens cadastrados</h6>
+<% end %>
+<%= link_to new_material_path do %>
+  <input type="button" class="btn btn-default" value="Novo Material">
+<% end %>

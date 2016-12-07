@@ -1,0 +1,22 @@
+<h1>Novo Material</h1>
+<div class="alert alert-danger" id="DIV_alert_Error" role="alert" style="display:none">
+  <div id="Msg_Alert_Error"></div>
+</div>
+<%= render 'form', material: @material %>
+
+<%= link_to '/home/index' do %>
+  <input type="button" class="btn btn-default" value="Voltar">
+<% end %>
+<% if params[:erro] != nil %>
+  <% if params[:erro].length != 0 %>
+  <script type="text/javascript">
+      $('#Msg_Alert_Error').html("<strong>Atenção! </strong>");
+      <% params[:erro].each do |err| %>
+        <% logger.debug "---- NEW -- #{err}" %>
+        $('#Msg_Alert_Error').append("<br><%= err %>");
+      <% end %>
+      $('#DIV_alert_Error').show();
+      setTimeout(function(){ $('#DIV_alert_Error').hide(); }, 10000);
+  </script>
+  <% end %>
+<% end %>

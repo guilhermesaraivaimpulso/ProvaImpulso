@@ -1,0 +1,29 @@
+<h1>Log de <%= @material.nome %></h1>
+<% if @logs.length!=0 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Usuario</th>
+      <th>Material</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.user.name %></td>
+        <td><%= log.qnt %></td>
+        <td><%= log.logtype %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<h6>Não há itens cadastrados</h6>
+<% end %>
+
+<%= link_to '/home/index' do %>
+  <input type="button" class="btn btn-default" value="Voltar">
+<% end %>
