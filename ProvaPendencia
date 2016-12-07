@@ -1,0 +1,20 @@
+Fazer um sistema para controle de almoxarifado com as seguintes funcionalidades:
+
+X Cadastro de usuário (login e senha apenas)
+- Após efetuado o login o usuário poderá:
+  X CRUD de materiais: criar, listar, apagar, editar (nome do material)
+  X Dar entrada no material (material e quantidade)
+  X Retirar material (material e quantidade)
+
+  X Ao adicionar ou retirar material deve ser salvo um log de alterações informando qual o usuário responsável, material e quantidade retirada/adicionada
+
+  X Tela de lista dos materiais (nome, quantidade (mesmo que 0), link para um log de entrada/retirada com as informações do log)
+
+Observações:
+X projeto deve ser feito utilizando rails 4+
+X se um material já tiver qualquer registro de retirada ou entrada não permitir que o mesmo seja excluído
+X o nome de um material deve ser único
+X o saldo dos materiais não pode ser negativo
+X a retirada de materiais só pode ser feita entre 9h e 18h de segunda a sexta
+X Um usuário não pode ser excluído
+X pode utilizar qualquer gem que achar necessário
